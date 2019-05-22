@@ -4,20 +4,26 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.sample.newsapi.BR;
 import com.sample.newsapi.R;
+import com.sample.newsapi.ViewModelProviderFactory;
 import com.sample.newsapi.databinding.ActivitySplashScreenBinding;
 import com.sample.newsapi.ui.base.BaseActivity;
 import com.sample.newsapi.ui.main.MainActivity;
+
+import javax.inject.Inject;
 
 import androidx.lifecycle.ViewModelProviders;
 
 public class SplashActivity extends BaseActivity<ActivitySplashScreenBinding, SplashViewModel> implements SplashNavigator {
 
+    @Inject
+    ViewModelProviderFactory viewModelProviderFactory;
     private SplashViewModel mSplashViewModel;
 
     @Override
     public int getBindingVariable() {
-        return com.sample.newsapi.BR.viewModel;
+        return BR.viewModel;
     }
 
     @Override
@@ -27,8 +33,7 @@ public class SplashActivity extends BaseActivity<ActivitySplashScreenBinding, Sp
 
     @Override
     public SplashViewModel getViewModel() {
-        mSplashViewModel = ViewModelProviders.of(this).get(SplashViewModel.class);
-        //ViewModelProvider.neof(this,factory).get(SplashViewModel.class);
+        mSplashViewModel = ViewModelProviders.of(this, viewModelProviderFactory).get(SplashViewModel.class);
         return mSplashViewModel;
     }
 

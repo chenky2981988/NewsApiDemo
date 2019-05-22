@@ -2,7 +2,9 @@ package com.sample.newsapi.ui.splash;
 
 import android.os.Handler;
 
+import com.sample.newsapi.data.DataManager;
 import com.sample.newsapi.ui.base.BaseViewModel;
+import com.sample.newsapi.utils.rx.SchedulerProvider;
 
 /**
  * Created by Chirag Sidhiwala on 5/21/2019.
@@ -12,6 +14,10 @@ public class SplashViewModel extends BaseViewModel<SplashNavigator> {
 
     private static final int SPLASH_TIME_OUT = 3000;
     private Handler splashHandler = null;
+
+    public SplashViewModel(DataManager dataManager, SchedulerProvider schedulerProvider) {
+        super(dataManager, schedulerProvider);
+    }
 
     public void checkNetworkAvailable(boolean isNetworkAvailable) {
         if (isNetworkAvailable) {
